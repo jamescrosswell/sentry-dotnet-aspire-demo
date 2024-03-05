@@ -43,7 +43,7 @@ app.MapGet("/crashtest", Delegate(SqlConnection connection) =>
     using (connection)
     {
         connection.Open();
-        var command = new SqlCommand(CommandHelper.CommandText, connection);
+        using var command = new SqlCommand(CommandHelper.CommandText, connection);
         command.ExecuteNonQuery();
     }
 
